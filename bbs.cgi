@@ -1,19 +1,21 @@
-#! /usr/local/bin/perl
+#! /usr/bin/perl
 
 
-#----------------#
-#    ‰Šúİ’è    #
-#----------------#
+#---------------------------------#
+#    Setup (Modify these pl0x)    #
+#---------------------------------#
 
 
-# Œf¦”Â‚Ì–¼‘O --------------------------
+# Bulletin Board Name  --------------------------
 
 
-$title = '‚ ‚â‚µ‚¢‚í[‚é‚Ç—‚Í‚¢‚Ù['; 
+$title = 'Dubious World@hi-ho'; 
+# Associated links
+$link = '<a href=\"http://extra.onlineexpress.net/cgi-bin/strangeworld/bbs.cgi\">ã‚¨ã‚¯ã‚¹ãƒˆãƒ©</a>ã€<a href=\"http://www.kinsan.ne.jp/~miki/strangeworld/bbs.cgi\">ãã‚“ã•ã‚“</a>ã€ <a href=\"http://famille.onlineexpress.net/cgi-bin/strangeworld/bbs.cgi\">ãµãã¿ãƒ¼ã‚‹</a>ã€<a href=\"http://www.bea.hi-ho.ne.jp/cgi-bin/user/strangeworld/bbs.cgi\">ã¯ã„ã»ãƒ¼</a> | <a href=\"http://www4.famille.ne.jp/~haruna/remix/bbs.cgi\">REMIX</a>ã€<a href=\"http://kakumeigun.onlineexpress.net/cgi-bin/relax/bbs.cgi\">RELAX</a> | <a href=\"http://edoya.neko.to/2/upload.cgi\">ãç•Œéºç”£</a>ã€<a href=\"http://saturdaytears.virtualave.net/cgi-bin/upload.cgi\">å¾˜å¾Šã™ã‚‹éª¸</a>';
 
-# •¶šF‚â”wŒi‚È‚Ç‚Ìİ’è
+# Set text color, background, etc.
 
-# body•”
+# Body
 
 $bgc    = '004040';
 
@@ -25,118 +27,118 @@ $vlinkc = 'dddddd';
 
 $alinkc = 'ff0000';
 
-# ‘è–¼‚ÌF
+# Subject
 
 $subjc  = 'ffffee';
 
-# --- •\¦Œ” --------------------------------------------
-# ‚Pƒy[ƒW‚É•\¦‚·‚éŒ”‚ÌƒfƒtƒHƒ‹ƒg’l
+# --- Number of posts -------------------------------------
+# Default number of posts to display on one page
 $def =  30;
-# ‚Pƒy[ƒW‚É•\¦‚·‚éŒ”‚ÌÅ¬’l
+# Default number of posts to display on one page
 $defmin =  0;
-# ‚±‚ÌŒ”ˆÈã‚ÅƒŠƒ[ƒh^‘‚«‚İ‚µ‚½‚Æ‚«‚É‚ÍŸ‚Í‚±‚ÌŒ”‚É‚·‚éB
+# Maximum total posts (?)
 $defmax =300;
 
-# --- ‚t‚q‚k ----------------------------------------------
-# ‚±‚ÌƒXƒNƒŠƒvƒg
+# --- ï¼µï¼²ï¼¬ ----------------------------------------------
+# Script filename
 $cgiurl = 'bbs.cgi';
 
 
-# ˜A—æ
+# Contact
 $mailadd = 'goodby@strangers.com';
 
-# ƒƒO‚Ì‚t‚q‚k
+# Log URL
 $loglog0 = 'log';
 $loglog1 = 'http://';
 
-# ---------------------------------------- ‘‚«‚İƒ`ƒFƒbƒN ----------------------------------------
-# ŠÇ—l–¼‘Oƒ`ƒFƒbƒNEƒ[ƒ‹ƒAƒhƒŒƒXEƒpƒXƒ[ƒh
-$namez = '‚µ‚Î';
+# ---------------------------------------- Write-check ----------------------------------------
+# Manager access information (CHANGE THIS)
+$namez = 'ã—ã°';
 $pass = 'chiba';
-# ‘‚«‚İÅ‘å—Ê
+# maximum write capacity
 $maxlength = 1024*16; 
-#“Še“à—e•¶š”
+# Number of characters of the submitted content
 $max_v = 8000;      
-#“Še“à—es”iã‚Ì•¶š”‚Æ‚ÌŒ“‚Ë‡‚¢‚ğl‚¦‚Äj
+#Number of lines of content to be submitted (to be combined with the number of characters above)
 $max_line = 120;     
 
-# “ñd‘‚«‚İƒ`ƒFƒbƒNŒ”
+# Number of double write checks
 $check = 10;
-# “ñd‘‚«‚İƒ`ƒFƒbƒNƒoƒCƒg”
+# Double write check bytes
 $checklength = 10;
-# ‘‚«‚İŒ”‚ÌÅ‘å“o˜^”‚Ìİ’è
+# Set the maximum number of writings to be registered
 $max = '300';
  
-# ------------------------------------ ƒfƒBƒŒƒNƒgƒŠEƒtƒ@ƒCƒ‹–¼ ------------------------------------
-# “ú–{ŒêƒR[ƒh•ÏŠ·ƒ‰ƒCƒuƒ‰ƒŠjocde.pl‚ÌƒpƒX
-require './jcode.pl';
-# “à—e‚ª‘‚«‚Ü‚ê‚é‹L˜^ƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğİ’è
-$file = './loveyou.dat';
-# •Ê“r‚Æ‚éƒƒO‚Ìƒtƒ@ƒCƒ‹–¼æ“ª•¶šEŠg’£q‚Ìw’è
-$logfile = "./log/";
+# ------------------------------------ directory and file name ------------------------------------
+# Path of the Japanese code conversion library jocde.pl
+require '/jcode.pl';
+# Set the path to the recording file whose contents will be written
+$file = 'loveyou.dat';
+# Specify the name and extension of the log file name to be taken separately
+$logfile = "/log/log";
 $logfiledat = ".html";
 
-# -------------------------------------------- ƒJƒEƒ“ƒ^ --------------------------------------------
-# ƒJƒEƒ“ƒ^ƒvƒ‰ƒX’l
+# -------------------------------------------- ã‚«ã‚¦ãƒ³ã‚¿ --------------------------------------------
+# counter plus value
 $countplus = "";
-# ƒJƒEƒ“ƒ^ŠJn“ú
+# Counter start date
 $countdate = '99/6/20';
-# ƒJƒEƒ“ƒ^ƒtƒ@ƒCƒ‹‚Ìæ“ª•¶šEŠg’£q‚Ìw’è
-$countfile = './count/count';
+# Specify the name and extension of the counter file
+$countfile = '/count/count';
 $countfiledat = '.txt';
-# ƒJƒEƒ“ƒ^‹­“xi‚O‚Ì‚Æ‚«‚Íg—p‚µ‚È‚¢j
+# Counter strength (not used when 0)
 $countlevel = 3;
 
-# --------------------------------------------- ‚»‚Ì‘¼ ---------------------------------------------
-# ·
+# --------------------------------------------- ãã®ä»– ---------------------------------------------
+# æ™‚å·®
 $tim =0*3600;
-# “ü—ÍŒ`®‚Ìİ’è
+# å…¥åŠ›å½¢å¼ã®è¨­å®š
 $method = 'post';
 
 
-# ˆ—
+# æ™‚åˆ»å‡¦ç†
 ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime(time + $tim );
 $month = ($mon + 1);
 
-# ‚Ìƒ[ƒƒTƒvƒŒƒX
+# æ™‚åˆ»ã®ã‚¼ãƒ­ã‚µãƒ—ãƒ¬ã‚¹
 if ($month < 10) { $month = "0$month"; }
 if ($mday < 10)  { $mday  = "0$mday";  }
 if ($sec < 10)   { $sec   = "0$sec";   }
 if ($min < 10)   { $min   = "0$min";   }
 if ($hour < 10)  { $hour  = "0$hour";  }
 
-# —j“ú•ÏŠ·ˆ—
-$y0="“ú"; $y1="Œ"; $y2="‰Î"; $y3="…"; $y4="–Ø"; $y5="‹à"; $y6="“y";
+# æ›œæ—¥å¤‰æ›å‡¦ç†
+$y0="Sunday"; $y1="Monday"; $y2="Tuesday"; $y3="Thursday"; $y4="Wednesday"; $y5="Friday"; $y6="Saturday";
 $youbi = ($y0,$y1,$y2,$y3,$y4,$y5,$y6) [$wday];
 
-# ƒtƒH[ƒ}ƒbƒg
-$date_now = "$monthŒ$mday“ú($youbi)$hour$min•ª$sec•b";
-# ƒƒOƒtƒ@ƒCƒ‹–¼æ“¾
+# æ™‚åˆ»ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+$date_now = "$monthMonth$mdayDay($youbi)$hourHour$minMinute$secSecond";
+# Log file name acquisition
 $filedate = "$logfile$year$month$mday$logfiledat";
-# ‚æ‚­‚í‚©‚ç‚È‚¢•Ï”
+# Unfamiliar Variables
 $gesu = $ENV{'REMOTE_PORT'};
-# “Še‚Ìaction–¼
+# Action name at time of submission
 $action = "regist";
 
-# ’Ç‰Á‘Îô -------------------------------
+# additional measures -------------------------------
 
-# ŠO•”“Še–h~ƒR[ƒh
-$protect_a = 9987;	# 4Œ…
-$protect_b = 55;		# 2Œ…
-$protect_c = 112;		# 3Œ…
+# External Posting Prevention Code
+$protect_a = 9987;	# four-digit number
+$protect_b = 55;		# two-digit number
+$protect_c = 112;		# three-digit number
 
-# ‰ß‹ƒƒO‚ÌÅ‘åƒtƒ@ƒCƒ‹ƒTƒCƒY
+# Maximum file size of logs
 $maxoldlogsize = 3 * 1024 * 1024;		# 3MB
 
 ###########################################################################################
 
-# ƒtƒH[ƒ€“ü—Í‚³‚ê‚½ƒf[ƒ^‚ğ$buffer‚ÉŠi”[‚·‚éiget‚©post‚©‚É‚æ‚Á‚Äæ“¾•û–@‚ªˆÙ‚È‚éj
+# ãƒ•ã‚©ãƒ¼ãƒ å…¥åŠ›ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’$bufferã«æ ¼ç´ã™ã‚‹ï¼ˆgetã‹postã‹ã«ã‚ˆã£ã¦å–å¾—æ–¹æ³•ãŒç•°ãªã‚‹ï¼‰
 #if ($ENV{'REQUEST_METHOD'} eq "POST" && $ENV{'CONTENT_LENGTH'} < $maxlength) { read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'}); }
 #else { $buffer = $ENV{'QUERY_STRING'}; }
 if ($ENV{'REQUEST_METHOD'} eq "POST") { read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'}); } else { $buffer = $ENV{'QUERY_STRING'}; }
 if ($ENV{'CONTENT_LENGTH'} > $maxlength) {&error(5);}
 
-# $buffer‚ÉŠi”[‚³‚ê‚½FORMŒ`®‚Ìƒf[ƒ^‚ğæ‚èo‚·
+# $bufferã«æ ¼ç´ã•ã‚ŒãŸFORMå½¢å¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™
 @pairs = split(/&/,$buffer);
 foreach $pair (@pairs) {
 	
@@ -144,24 +146,24 @@ foreach $pair (@pairs) {
 	$value =~ tr/+/ /;
 	$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
 	
-	# ‹L˜^‚·‚éƒf[ƒ^‚Ísjis
+	# è¨˜éŒ²ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¯sjis
 	&jcode'convert(*value,'sjis');
 	
 
-#‰üs˜A‘Å‚Ì‚¢‚½‚¸‚ç‚ğ‰ñ”ği‚RsˆÈã‰½‚à‘‚©‚¸‚É‰üs‚Ì‚İ‚Ì•”•ª‚Í‰üs–³‹j
-#ƒXƒy[ƒX{‰üs‚Ì˜A‘Å‚ğ‰ñ”ğiã‹L‚ğ‰ñ”ğ‚·‚é‚½‚ß‚ÉƒXƒy[ƒX‚ğ‚¢‚ê‚Ä‰üs‚·‚éˆ«‹Y‚Ìê‡j
+#æ”¹è¡Œé€£æ‰“ã®ã„ãŸãšã‚‰ã‚’å›é¿ï¼ˆï¼“è¡Œä»¥ä¸Šä½•ã‚‚æ›¸ã‹ãšã«æ”¹è¡Œã®ã¿ã®éƒ¨åˆ†ã¯æ”¹è¡Œç„¡è¦–ï¼‰
+#ã‚¹ãƒšãƒ¼ã‚¹ï¼‹æ”¹è¡Œã®é€£æ‰“ã‚’å›é¿ï¼ˆä¸Šè¨˜ã‚’å›é¿ã™ã‚‹ãŸã‚ã«ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã„ã‚Œã¦æ”¹è¡Œã™ã‚‹æ‚ªæˆ¯ã®å ´åˆï¼‰
 	if ($value =~ /\r\n/) { $value =~ s/\r\n/\r/g; }
 	if ($value =~ /\n/) { $value =~ s/\n/\r/g; }
 
 	if ($value =~ / \r \r/) { $value =~ s/ \r \r//g; }
-	if ($value =~ /\@\r\@\r/) { $value =~ s/\@\r\@\r//g; }
+	if ($value =~ /\ã€€\r\ã€€\r/) { $value =~ s/\ã€€\r\ã€€\r//g; }
 	if ($value =~ / \r/) { $value =~ s/ \r/\r/g; }
-	if ($value =~ /\@\r/) { $value =~ s/\@\r/\r/g; }
+	if ($value =~ /\ã€€\r/) { $value =~ s/\ã€€\r/\r/g; }
 	if ($value =~ /\r\r\r\r/) { $value =~ s/\r\r\r\r//g; }
 
 
-	# ˆ—‚Ì“s‡ã‚Ìˆ—
-	$value =~ s/\n//g; # ‰üs•¶š‚ÍÁ‹
+	# å‡¦ç†ã®éƒ½åˆä¸Šã®å‡¦ç†
+	$value =~ s/\n//g; # æ”¹è¡Œæ–‡å­—ã¯æ¶ˆå»
 	
 	if ($name eq 'value') { $value =~ s/&/&amp\;/g; $value =~ s/\,/\0/g; }
 	elsif ($name ne 'page' && $name ne 'image') { $value =~ s/\,//g; $value =~ s/\;//g; $value =~ s/\://g; $value =~ s/\=//g; }
@@ -174,17 +176,17 @@ foreach $pair (@pairs) {
 }
 
 
-# •\¦ƒy[ƒW”‚ÌŒˆ’è ##################################################
+# è¡¨ç¤ºãƒšãƒ¼ã‚¸æ•°ã®æ±ºå®š ##################################################
 if ($FORM{'def'} ne '') { $def = $FORM{'def'}; }
 if ($def < $defmin) { $def = $defmin;}
 $defnext = $def;
 if ($defnext > $defmax) {$defnext = $defmax;}
 
-# •\¦F‚ÌŒˆ’è ########################################################
+# è¡¨ç¤ºè‰²ã®æ±ºå®š ########################################################
 if ($FORM{'bgcolor'} ne '') { $bgc = $FORM{'bgcolor'}; }
 $body  = "<body bgcolor=\"#$bgc\" text=\"#$textc\" link=\"#$linkc\" vlink=\"#$vlinkc\" alink=\"#$alinkc\">";
 
-# ƒ|ƒbƒvƒAƒbƒvƒEƒCƒ“ƒhƒE‚ÌŒˆ’è ########################################################
+# ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æ±ºå®š ########################################################
 
 #if ($FORM{'image'} eq '') { $checked1='checked'; }
 #if ($FORM{'image'} eq '2') { $checked2='checked'; }
@@ -193,10 +195,10 @@ $body  = "<body bgcolor=\"#$bgc\" text=\"#$textc\" link=\"#$linkc\" vlink=\"#$vl
 #if ($FORM{'himage'} eq '2'){ $link='$sec$min'; }
 
 
-# ‘S‘Ì‚Ì—¬‚ê‚ğŒˆ’è‚·‚éiaction‚âpwd‚ÍƒtƒH[ƒ€“ü—Í‚³‚ê‚½ƒf[ƒ^‚ğŠi”[‚·‚é–¼‘Oj
+# å…¨ä½“ã®æµã‚Œã‚’æ±ºå®šã™ã‚‹ï¼ˆactionã‚„pwdã¯ãƒ•ã‚©ãƒ¼ãƒ å…¥åŠ›ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹åå‰ï¼‰
 ########################################################
-#    action=regist  --> ‹L–‹L˜^ˆ—‚µ‚Ä’Êí‰æ–Ê‚Ö
-#    ‚»‚Ì‘¼  --> ’Êí‰æ–Ê‚Ö
+#    action=regist  --> è¨˜äº‹è¨˜éŒ²å‡¦ç†ã—ã¦é€šå¸¸ç”»é¢ã¸
+#    ãã®ä»–  --> é€šå¸¸ç”»é¢ã¸
 
 if (($FORM{'def'} eq '0') && ($FORM{'value'} ne '')) { &regist; }
 if ($FORM{'def'} eq '0') { &read; }
@@ -207,10 +209,10 @@ if ($FORM{'action'} eq 'search2') { &search2; }
 if ($FORM{'action'} eq 'search3') { &search3; }
 &html;
 
-# ƒƒCƒ“•\¦ƒTƒuƒ‹[ƒ`ƒ“ #######################################################
+# ãƒ¡ã‚¤ãƒ³è¡¨ç¤ºã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ #######################################################
 sub html {
 	
-	# ƒvƒƒeƒNƒgƒL[¶¬
+	# ãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã‚­ãƒ¼ç”Ÿæˆ
 	local ( $ptime ) = time + $tim * 60 * 60;
 	local ( $pkey ) = ( $ptime + $protect_a ) * $protect_b + $protect_c;
 	
@@ -219,24 +221,22 @@ sub html {
 	print "$body\n";
 
 	
-	# ƒoƒi[‚Í‚±‚±
+	# ãƒãƒŠãƒ¼ã¯ã“ã“
 	
 	print "<font size=+1><b>$title</b></font>\n";
-	print "<font size=-1>@<b><a href=\"http://www.geocities.com/Tokyo/Subway/1282/front.html\" target=\"_top\">‚¨‚µ‚ç‚¹ƒy[ƒW</a></b></font> \n";
-	print " <font size=-1><b><a href=\"http://freehosting1.at.webjump.com/sw/swatty-webjump/\" target=\"_top\">ƒXƒƒeƒB</a></b></font>\n";
-#print "<font size=-1><b><a href=\"mailto:$mailadd\">˜A—æ</a></b></font>\n";
+#print "<font size=-1><b><a href=\"mailto:$mailadd\">Contact</a></b></font>\n";
 
 	print "<form method=$method action=\"$cgiurl\">\n";
 	
 	print "<input type=hidden name=\"action\" value=\"$action\">\n";
-	print "“ŠeÒ <input type=text name=\"name\" size=20 maxlength=40 value=\"$FORM{'name'}\"><br>";
-	print "ƒ[ƒ‹ <input type=text name=\"email\" size=30><br>\n";
-	print "‘è–¼@ <input type=text name=\"subject\" size=30 maxlength=60>  \n";
-	print "<input type=submit value=\"“Še^ƒŠƒ[ƒh\"><input type=reset value=\"Á‚·\"><p>“à—e<i>iƒ^ƒO‚Íg‚¦‚Ü‚¹‚ñB“à—e‚ğ‘‚©‚¸‚É“Šeƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚ÆƒŠƒ[ƒh‚É‚È‚è‚Ü‚·Bj</i><br><textarea name=\"value\" rows=5 cols=70></textarea><input type=hidden name=\"page\" size=70 value=\"http://\"><p>\n";
-	print "•\\¦Œ”\n";
+	print "Poster <input type=text name=\"name\" size=20 maxlength=40 value=\"$FORM{'name'}\"><br>";
+	print "E-mail <input type=text name=\"email\" size=30><br>\n";
+	print "Titleã€€ <input type=text name=\"subject\" size=30 maxlength=60>  \n";
+	print "<input type=submit value=\"Postï¼Reload\"><input type=reset value=\"Reset\"><p>Contents<i>ï¼ˆHTML tags are not allowed. If you do not post something it will reload.ï¼‰</i><br><textarea name=\"value\" rows=5 cols=70></textarea><input type=hidden name=\"page\" size=70 value=\"http://\"><p>\n";
+	print "Total of posts shown\n";
 	print "<input type=text name=\"def\" size=8 value=\"$defnext\">\n";
-	print "ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[<input type=text name=\"bgcolor\" size=6 value=\"$bgc\"><input type=hidden name=\"link\" value=\"$FORM{'link'}\">\n";
-	print "URL©“®ƒŠƒ“ƒN<input type=checkbox name=\"image\" value=\"1\" checked></font> \n";
+	print "Background color<input type=text name=\"bgcolor\" size=6 value=\"$bgc\"><input type=hidden name=\"link\" value=\"$FORM{'link'}\">\n";
+	print "URL auto-linking <input type=checkbox name=\"image\" value=\"1\" checked></font> \n";
 
 	print "<input type=hidden name=\"code\" value=\"$sec$min\@$pkey.com\">\n";
 
@@ -245,41 +245,41 @@ sub html {
 	print "<input type=hidden name=\"win_time\" value=\"$month$mday$hour$min$sec\">\n";
 
 
-	print "<p><font size=-1>Å‹ß‚Ì‰ß‹ƒƒO‚Í<a href=\"./getlog.cgi\" target=\"_top\">‚±‚±</a>B\n";
+	print "<p><font size=-1>The recent logs are <a href=\"./getlog.cgi\" target=\"_top\">here</a>.\n";
 
 
 
 
-#ƒJƒEƒ“ƒ^[
+#ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	if ( $countlevel > 0 ){
-		print "<font size=-1>$countdate‚©‚ç ";
-		&counter; print "$countplusi‚±‚í‚ê‚É‚­‚³ƒŒƒxƒ‹$countlevelj</font>\n";	}
+		print "<font size=-1>from $countdate";
+		&counter; print "$countplusï¼ˆCrack resistance level$countlevelï¼‰</font>\n";	}
 
 	print "<input type=hidden name=\"win_count\" value=\"$maxcount\">\n";
 
 
-	# ƒvƒƒeƒNƒgƒR[ƒho—Í
+	# ãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã‚³ãƒ¼ãƒ‰å‡ºåŠ›
 	print "<input type=hidden name=\"protect\" value=\"$pkey\">\n";
 	
 	
-#	print "<br><i>V‚µ‚¢‹L–‚©‚ç•\\¦‚µ‚Ü‚·BÅ‚$maxŒ‚Ì‹L–‚ª‹L˜^‚³‚êA‚»‚ê‚ğ’´‚¦‚é‚ÆŒÃ‚¢‹L–‚©‚çíœ‚³‚ê‚Ü‚·B<br>\n";
-#	print "‚P‰ñ‚Ì•\\¦‚Å$defŒ‚ğ‰z‚¦‚éê‡‚ÍA‰º‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚±‚Æ‚ÅŸ‚Ì‰æ–Ê‚Ì‹L–‚ğ•\\¦‚µ‚Ü‚·B</i>\n";
+#	print "<br><i>Table is shown starting with the newest posts. Old posts will be pruned after $max posts have been submitted.<br>\n";
+#	print "If the number of posts exceeds $def in one page, you can press the button below to display the posts on the next page.</i>\n";
 
 
-			print "<hr><a href=\"http://extra.onlineexpress.net/cgi-bin/strangeworld/bbs.cgi\">ƒGƒNƒXƒgƒ‰</a>A<a href=\"http://www.kinsan.ne.jp/~miki/strangeworld/bbs.cgi\">‚«‚ñ‚³‚ñ</a>A <a href=\"http://famille.onlineexpress.net/cgi-bin/strangeworld/bbs.cgi\">‚Ó‚Ÿ‚İ[‚é</a>A<a href=\"http://www.bea.hi-ho.ne.jp/cgi-bin/user/strangeworld/bbs.cgi\">‚Í‚¢‚Ù[</a> | <a href=\"http://www4.famille.ne.jp/~haruna/remix/bbs.cgi\">REMIX</a>A<a href=\"http://kakumeigun.onlineexpress.net/cgi-bin/relax/bbs.cgi\">RELAX</a> | <a href=\"http://edoya.neko.to/2/upload.cgi\">‚ŸŠEˆâY</a>A<a href=\"http://saturdaytears.virtualave.net/cgi-bin/upload.cgi\">œpœj‚·‚éŠ[</a>\n";
+			print "<hr>$link\n";
 
 
-#	 ƒT[ƒ`‚Ì’ˆÓ‘‚«
-	print "<hr>Å‘å\•\\¦F$maxŒ@¡F•ÔM@šF“ŠeÒŒŸõ@ŸFƒXƒŒƒbƒhŒŸõ@\•\\¦Œ”0ŒF–¢“Ç\•\\¦<hr>‚±‚ÌŒf¦”Â‚ÉŠÖ‚í‚é‚ ‚ç‚ä‚és“®‚Í‘S‚Ä©•ª‚ÅÓ”C‚ğ‚Æ‚Á‚Ä‚­‚¾‚³‚¢B\n";
+#	 ã‚µãƒ¼ãƒã®æ³¨æ„æ›¸ã
+	print "max\table:display:$max â– ï¼šReplies â˜…ï¼šPosters Search â—†ï¼šThread Search \table:display:0ä»¶ï¼šUnread\table:display<hr>You are responsible for any and all actions related to this forum. \n";
 
 
-#	ƒŠƒ[ƒh
-	print "<p></font></font><input type=submit value=\"“Še^ƒŠƒ[ƒh\">\n";
+#	ãƒªãƒ­ãƒ¼ãƒ‰
+	print "<p></font></font><input type=submit value=\"Post/Reload">\n";
 	print "</form>\n";
 	
-	#--- ‹L˜^‹L–‚Ìo—Í ----------------------------------#
+	#--- è¨˜éŒ²è¨˜äº‹ã®å‡ºåŠ› ----------------------------------#
 	
-	# ‹L˜^ƒtƒ@ƒCƒ‹‚ğ“Ç‚İo‚µƒI[ƒvƒ“‚µ‚ÄA”z—ñ<@lines>‚ÉŠi”[‚·‚é
+	# è¨˜éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å‡ºã—ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã€é…åˆ—<@lines>ã«æ ¼ç´ã™ã‚‹
     open(DB,"$file");
 	@lines = <DB>;
 	close(DB);
@@ -292,52 +292,52 @@ sub html {
 
 	foreach ($page .. $page_end) {
 		($date,$name,$email,$value,$subject,$hpage,$himage,$code,$postid) = split(/\,/,$lines[$_]);
-		$value =~ s/\0/\,/g; # ƒkƒ‹ƒR[ƒh‚É•ÏŠ·‹L˜^‚µ‚½”¼ŠpƒJƒ“ƒ}‚ğ•œ‹A‚³‚¹‚é
+		$value =~ s/\0/\,/g; # ãƒŒãƒ«ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›è¨˜éŒ²ã—ãŸåŠè§’ã‚«ãƒ³ãƒã‚’å¾©å¸°ã•ã›ã‚‹
 		chop($himage) if $himage =~ /\n/;
 		chop($hpage) if $hpage =~ /\n/;
 		chop($postid) if $postid =~ /\n/;
 		&disp;
 	}
 	
-	#--- ‰üƒy[ƒWˆ— ------------------------------------#
+	#--- æ”¹ãƒšãƒ¼ã‚¸å‡¦ç† ------------------------------------#
 	
 	print "</form><hr><p>\n";
 	$page_next = $page_end + 1;
 	$i = $page + 1; $j = $page_end + 1;
 	if ($page_end ne $accesses) {
-		print "<font size=-1><i>ˆÈã‚ÍAŒ»İ“o˜^‚³‚ê‚Ä‚¢‚éV’…‡$i”Ô–Ú‚©‚ç$j”Ô–Ú‚Ü‚Å‚Ì‹L–‚Å‚·B</i></font><p>\n";
+		print "<font size=-1><i>These are the $ith to $jth newest posts currently registered.</i></font><p>\n";
 		print "<form method=$method action=\"$cgiurl\">\n";
 		print "<input type=hidden name=\"page\" value=\"$page_next\">\n";
 		print "<input type=hidden name=\"def\" value=\"$def\">\n";
 		print "<input type=hidden name=\"bgcolor\" value=\"$bgc\">\n";
-		print "<input type=submit value=\"Ÿ‚Ìƒy[ƒW\"></form>\n";
+		print "<input type=submit value=\"Next page\"></form>\n";
 	}
 	else {
 	
-		print "<font size=-1><i>ˆÈã‚ÍAŒ»İ“o˜^‚³‚ê‚Ä‚¢‚éV’…‡$i”Ô–Ú‚©‚ç$j”Ô–Ú‚Ü‚Å‚Ì‹L–‚Å‚·B";
-		print "‚±‚êˆÈ‰º‚Ì‹L–‚Í‚ ‚è‚Ü‚¹‚ñB</i></font>\n";
+		print "<font size=-1><i>The above is... Currently registered posts from $ith to $jth in order of newest to oldest.";
+		print "No further posts are available.</i></font>\n";
 	}
 	
-	# ‚±‚ÌƒXƒNƒŠƒvƒg‚Ì’˜ìŒ •\¦i‚©‚È‚ç‚¸•\¦‚µ‚Ä‚­‚¾‚³‚¢j
+	# ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®è‘—ä½œæ¨©è¡¨ç¤ºï¼ˆã‹ãªã‚‰ãšè¡¨ç¤ºã—ã¦ãã ã•ã„ï¼‰
 
-		print "<form method=$method action=\"$cgiurl\"><input type=hidden name=\"def\" value=\"$def\"><input type=hidden name=\"bgcolor\" value=\"$bgc\"><input type=submit value=\"@ƒŠƒ[ƒh@\"></form>\n";
-	print "<h4 align=right><hr size=5><a href=\"http://www.ask.or.jp/~rescue/\">MiniBBS v7.5</a> <a href=\"http://www.bea.hi-ho.ne.jp/strangeworld/recycle/\">REQUIEM 990707ƒÁ</a> is Free.</h4>\n";
+		print "<form method=$method action=\"$cgiurl\"><input type=hidden name=\"def\" value=\"$def\"><input type=hidden name=\"bgcolor\" value=\"$bgc\"><input type=submit value=\"ã€€ãƒªãƒ­ãƒ¼ãƒ‰ã€€\"></form>\n";
+	print "<h4 align=right><hr size=5><a href=\"https://www.rescue.ne.jp/cgi/minibbs1/\">MiniBBS v7.5</a> <a href=\"https://github.com/ShockAwer/minibbs-hi-ho/\">REQUIEM 990707Î³</a> is Free.</h4>\n";
 	print "</body></html>\n";
 	exit;
 }
 
-# ‘‚«‚İˆ—ƒTƒuƒ‹[ƒ`ƒ“ ############################################################
+# æ›¸ãè¾¼ã¿å‡¦ç†ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ ############################################################
 sub regist {
 	
-	# “à—e‚ªƒXƒy[ƒX‚È‚çƒŠƒ[ƒh
+	# å†…å®¹ãŒã‚¹ãƒšãƒ¼ã‚¹ãªã‚‰ãƒªãƒ­ãƒ¼ãƒ‰
 	if ($FORM{'value'} eq "") { &html; }
 
- # •Ê‚Ìƒy[ƒW‚©‚ç‚±‚Ì‚b‚f‚h‚Ö‚Ì“Še‚ğ”rœ‚·‚éˆ—
+ # åˆ¥ã®ãƒšãƒ¼ã‚¸ã‹ã‚‰ã“ã®ï¼£ï¼§ï¼©ã¸ã®æŠ•ç¨¿ã‚’æ’é™¤ã™ã‚‹å‡¦ç†
 	$ref = $ENV{'HTTP_REFERER'};
 	$ref_url = $cgiurl; $ref_url =~ s/\~/.*/g;
 	if (!($ref =~ /$ref_url/i)) { &error(form); }
 	
-	# “ü—Í‚³‚ê‚½ƒf[ƒ^‚Ìƒ`ƒFƒbƒN ##################################
+	# å…¥åŠ›ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã®ãƒã‚§ãƒƒã‚¯ ##################################
 	if ($FORM{'bgcolor'} eq "") { &error(1); }
 	if ($FORM{'def'} eq "") { &error(1); }
 	if ($FORM{'win_time'} eq "") { &error(1); }
@@ -346,25 +346,25 @@ sub regist {
 	if ($FORM{'email'} =~ /,/) { &error(4); }
           $FORM{'email'}=~ s/\"//g;
 	if ($FORM{'email'} ne "") { if (!($FORM{'email'} =~ /(.*)\@(.*)\.(.*)/)) { &error(3); }}
-	if ($FORM{'subject'} eq "") { $FORM{'subject'} = '@'; }
+	if ($FORM{'subject'} eq "") { $FORM{'subject'} = 'ã€€'; }
 	
 	if ($FORM{'page'} eq "" || $FORM{'page'} eq "http://") { $FORM{'page'} = ''; }
 	else{
 		$FORM{'page'} =~ s/\s//g;$FORM{'page'} =~ s/\"//g;$FORM{'page'} =~ s/\'//g;
 		$FORM{'page'} =~ s/http\:\/\/http\:\/\//http\:\/\//g;
 	}
-	# s”§ŒÀ
+	# è¡Œæ•°åˆ¶é™
 if ($max_line) {
-		$value_size = ($FORM{'value'} =~ tr/\r/\r/) + 1;     # \r ‚Ì”‚ğ”‚¦‚é
+		$value_size = ($FORM{'value'} =~ tr/\r/\r/) + 1;     # \r ã®æ•°ã‚’æ•°ãˆã‚‹
 		if ($value_size > $max_line) { &error(1); }
 	}
-	# •¶š”§ŒÀ
+	# æ–‡å­—æ•°åˆ¶é™
 	if ($max_v) {
 		$value_size = length($FORM{'value'});
 		if ($value_size > $max_v)  { &error(1); }
 	}
 	
-     # ƒJƒEƒ“ƒ^[§ŒÀ
+     # ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼åˆ¶é™
 
 	for( $i=0 ; $i < $countlevel ; $i++){
 		open(IN,"$countfile$i$countfiledat");
@@ -379,7 +379,7 @@ if ($max_line) {
 if ( $FORM{'win_count'} > $maxcount ) { &repeat; }
 
 
-# ƒvƒƒeƒNƒgƒR[ƒhƒ`ƒFƒbƒN
+# ãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã‚³ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 	if ( $FORM{'protect'} ne '' ) {
 		local ( $ptime ) = time + $tim * 60 * 60;
 		local ( $pcheck ) = ( $FORM{'protect'} - $protect_c ) / $protect_b - $protect_a;
@@ -388,15 +388,15 @@ if ( $FORM{'win_count'} > $maxcount ) { &repeat; }
 			= localtime ( $pcheck );
 		$cyear += 1900;
 		$cmon++;
-		local ( $cnowdate ) = sprintf ( "%d/%02d/%02d(%s)%02d%02d•ª%02d•b", 
+		local ( $cnowdate ) = sprintf ( "%d/%02d/%02d(%s)%02dæ™‚%02dåˆ†%02dç§’", 
 			$cyear, $cmon, $cmday, 
-			( '“ú', 'Œ', '‰Î', '…', '–Ø', '‹à', '“y' )[$cwday],
+			( 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' )[$cwday],
 			$chour, $cmin, $csec );
 		if ( 
 		  ( $csec  < 0 ) || ( $csec  > 60 ) ||
 		  ( $cmin  < 0 ) || ( $cmin  > 60 ) ||
 		  ( $chour < 0 ) || ( $chour > 24 ) ||
-		  ( ( $ptime - $pcheck ) > 1 * 60 * 60 ) ) {	# ‚PŠÔ
+		  ( ( $ptime - $pcheck ) > 1 * 60 * 60 ) ) {	# ï¼‘æ™‚é–“
 			&error ( 'xxx' );
 		}
 	} else {
@@ -405,30 +405,30 @@ if ( $FORM{'win_count'} > $maxcount ) { &repeat; }
 
 
 	
-	# ‰ß‹ƒƒO‚Ìƒtƒ@ƒCƒ‹ƒTƒCƒYƒ`ƒFƒbƒN
+	# éå»ãƒ­ã‚°ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if ( ( -s $filedate ) > $maxoldlogsize ) {
 		&error (0);
 	}
 
 
 	
-	# “ŠeÒ–¼ƒ`ƒFƒbƒN
+	# æŠ•ç¨¿è€…åãƒã‚§ãƒƒã‚¯
 	$formname = $FORM{'name'};
 #	if ($formname eq "$nameng"){ &error(xx); }
 	if ($formname eq "$pass"){$formname = $namez; $FORM{'email'} = $mailadd;}
 	else {
-		$formname =~ s/$namez/<small>‚µ‚Î<\/small>/g;
-#		$formname =~ s/‚µ‚Ï/‚µ‚ÍK/g;
+		$formname =~ s/$namez/<small>(Dead horse)<\/small>/g;
+#		$formname =~ s/Branchã‚œ/g;
 	}
 	
-# ‹L˜^ƒtƒ@ƒCƒ‹‚ğ“Ç‚İo‚µƒI[ƒvƒ“‚µ‚ÄA”z—ñ<@lines>‚ÉŠi”[‚·‚é
+# è¨˜éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å‡ºã—ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã€é…åˆ—<@lines>ã«æ ¼ç´ã™ã‚‹
 	open (DB,"+<$file") || &error (0);
 	eval 'flock (DB, 2)';
 	@lines = <DB>;
 
 
 	
-	# Å‘å•Û‹L˜^”‚Ìˆ—
+	# æœ€å¤§ä¿æŒè¨˜éŒ²æ•°ã®å‡¦ç†
 	$i = 0;
 	foreach $line (@lines) {
 		$i++;
@@ -436,7 +436,7 @@ if ( $FORM{'win_count'} > $maxcount ) { &repeat; }
 		push(@new,$line);
 	}
 
-	# ˜A‘±“¯ˆê“à—e‘‚«‚İƒ`ƒFƒbƒN
+	# é€£ç¶šåŒä¸€å†…å®¹æ›¸ãè¾¼ã¿ãƒã‚§ãƒƒã‚¯
 	$i = 0; $j = 0;
 	while ( ( $i < $check ) && ($j == 0) ) {
 		($date0,$name0,$email0,$value0,$subject0,$hpage0,$himage0,$code0,$postid0,$win_time0,$win_count0) = split(/\,/,$lines[$i]);
@@ -451,7 +451,7 @@ if ( $FORM{'win_count'} > $maxcount ) { &repeat; }
 		$i++;
 	}
 
-	# ID¶¬
+	# IDç”Ÿæˆ
 	if ( $lines[0] =~ /^.*,.*,.*,.*,.*,.*,.*,.*,(.*),.*,.*\n/ ) {
 		$postid = $1 + 1;
 	} else {
@@ -471,7 +471,7 @@ if ( $FORM{'win_count'} > $maxcount ) { &repeat; }
 		close (DB);
 		
 
-# ‰ß‹ƒƒOo—Í
+# éå»ãƒ­ã‚°å‡ºåŠ›
 ########################
 		$FORM{'value'} =~ s/\0/\,/g;
 		open(LOG,">>$filedate") || &error(0);
@@ -479,10 +479,10 @@ if ( $FORM{'win_count'} > $maxcount ) { &repeat; }
 
 
 if (-z LOG) {
-	# ƒtƒ@ƒCƒ‹‚ª‹ó‚Ìê‡‚ÍHTMLƒwƒbƒ_‚ğ•t‚¯‚é
+	# HTML header if the file is empty
 	print LOG "<html>\n<body bgcolor=\"#$bgc\" text=\"#$textc\" link=\"#$linkc\" vlink=\"#$vlinkc\" alink=\"#$alinkc\">\n<hr>";
 
-# •Û‘¶Œã‚T“ú‚ğ‰ß‚¬‚½‰ß‹ƒƒOƒtƒ@ƒCƒ‹‚Ííœ
+# ä¿å­˜å¾Œï¼•æ—¥ã‚’éããŸéå»ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã¯å‰Šé™¤
 	( $oldsec, $oldmin, $oldhour, $oldmday, $oldmonth, $oldyear, $oldwday, $oldyday, $oldisdst )
   = localtime ( time + $tim - 3 * 60 * 60 * 24 );
 $oldmonth += 1;
@@ -491,10 +491,10 @@ $oldlogfilename = sprintf ( "%s%d%02d%02d%s", $logfile, $oldyear, $oldmonth, $ol
 }
 
 		print LOG "<font size=+1 color=\"#$subjc\"><b>$FORM{'subject'}</b></font>";
-		# ƒ[ƒ‹ƒAƒhƒŒƒX‚ª‹L˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚É‚ÍƒŠƒ“ƒN‚ğ•t‚¯‚é
-		if ($FORM{'email'} ne '') { print LOG "@“ŠeÒF<b><a href=\"mailto:$FORM{'email'}\">$formname</a></b>\n"; }
-		else { print LOG "@“ŠeÒF<font color=\"#$subjc\"><b>$formname</b></font>\n"; }
-		print LOG "<font size=-1>@“Še“úF$date_now";
+		# ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¨˜éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã«ã¯ãƒªãƒ³ã‚¯ã‚’ä»˜ã‘ã‚‹
+		if ($FORM{'email'} ne '') { print LOG "ã€€Nameï¼š<b><a href=\"mailto:$FORM{'email'}\">$formname</a></b>\n"; }
+		else { print LOG "ã€€Nameï¼š<font color=\"#$subjc\"><b>$formname</b></font>\n"; }
+		print LOG "<font size=-1>ã€€Dateï¼š$date_now";
 	    print LOG "</font><p>\n";
 if ($FORM{image} eq '1') {
 
@@ -504,10 +504,10 @@ if ($FORM{image} eq '1') {
 
 		print LOG "<blockquote><pre>$FORM{'value'}</pre><p>\n\n";
 		
-		# ‚t‚q‚k‚ª‹L˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚É‚ÍƒŠƒ“ƒN‚ğ•t‚¯‚é
+		# ï¼µï¼²ï¼¬ãŒè¨˜éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã«ã¯ãƒªãƒ³ã‚¯ã‚’ä»˜ã‘ã‚‹
 		if ($FORM{'page'} ne '') {
 			$page0 = $FORM{'page'};
-			$page0 =~ s/$cgiurl\?action=search1\&search=(.*)\&id=\d*/QlF$1/;
+			$page0 =~ s/$cgiurl\?action=search1\&search=(.*)\&id=\d*/å‚è€ƒï¼š$1/;
 			if ( $FORM{'page'} eq $page0 ) {
 				print LOG "<a href=\"$FORM{'page'}\" target=\"jump\">$page0</a><p>\n";
 			} else {
@@ -531,14 +531,14 @@ if ($FORM{image} eq '1') {
 	}
 
 	
-	# ‹L˜^ˆ—ŒãAÄ“Ç‚İ‚İ‚·‚é
+	# è¨˜éŒ²å‡¦ç†å¾Œã€å†èª­ã¿è¾¼ã¿ã™ã‚‹
 	if ( $FORM{'def'} eq "0" ) { &read; }
 	elsif ( $FORM{'follow'} ne "on" ) { &html; }
 	else {
 		print "Content-type: text/html\n\n";
-		print "<html><head><title>‚©‚«‚±‚İŠ®—¹</title></head>\n";
+		print "<html><head><title>Entry completed</title></head>\n";
 		print "$body\n";
-		print "<h1>‚©‚«‚±‚İŠ®—¹</h1>\n";
+		print "<h1>Complete post</h1>\n";
 		exit;
 	}
 #	print "Location: $cgiurl" . '?' . "\n\n";
@@ -546,20 +546,20 @@ if ($FORM{image} eq '1') {
 }
 
 
-# ƒtƒHƒ[“ŠeƒTƒuƒ‹[ƒ`ƒ“isearch1j ############################################
+# ãƒ•ã‚©ãƒ­ãƒ¼æŠ•ç¨¿ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ï¼ˆsearch1ï¼‰ ############################################
 sub search1 {
 
-	#--- “ü—ÍƒtƒH[ƒ€‰æ–Ê --------------------------------#
+	#--- å…¥åŠ›ãƒ•ã‚©ãƒ¼ãƒ ç”»é¢ --------------------------------#
 
 	print "Content-type: text/html\n\n";
-	print "<html><head><title>$FORM{search}‚É•ÔM</title></head>\n";
+	print "<html><head><title>$FORM{search}Reply</title></head>\n";
 	print "$body\n";
 
-	# ƒoƒi[‚Í‚±‚±
+	# ãƒãƒŠãƒ¼ã¯ã“ã“
 
-	#--- ‹L˜^‹L–‚Ìo—Í ----------------------------------#
+	#--- è¨˜éŒ²è¨˜äº‹ã®å‡ºåŠ› ----------------------------------#
 
-	# ‹L˜^ƒtƒ@ƒCƒ‹‚ğ“Ç‚İo‚µƒI[ƒvƒ“‚µ‚ÄA”z—ñ<@lines>‚ÉŠi”[‚·‚é
+	# è¨˜éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å‡ºã—ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã€é…åˆ—<@lines>ã«æ ¼ç´ã™ã‚‹
     open(DB,"$file");
 	@lines = <DB>;
 	close(DB);
@@ -569,7 +569,7 @@ sub search1 {
 
 	while (($f == 0) && ($i < $accesses)){
 
-		# ƒf[ƒ^‚ğŠe•Ï”‚É‘ã“ü‚·‚é
+		# ãƒ‡ãƒ¼ã‚¿ã‚’å„å¤‰æ•°ã«ä»£å…¥ã™ã‚‹
 		($date,$name,$email,$value,$subject,$hpage,$himage,$code,$postid) = split(/\,/,$lines[$i]);
 		chop ($postid) if $postid =~ /\n/;
 		if ($postid eq $FORM{id}) { $f = 1;}
@@ -578,7 +578,7 @@ sub search1 {
 
 
 	if ($f == 1){
-		$value =~ s/\0/\,/g; # ƒkƒ‹ƒR[ƒh‚É•ÏŠ·‹L˜^‚µ‚½”¼ŠpƒJƒ“ƒ}‚ğ•œ‹A‚³‚¹‚é
+		$value =~ s/\0/\,/g; # ãƒŒãƒ«ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›è¨˜éŒ²ã—ãŸåŠè§’ã‚«ãƒ³ãƒã‚’å¾©å¸°ã•ã›ã‚‹
 		chop($himage) if $himage =~ /\n/;
 		chop($hpage) if $hpage =~ /\n/;
 		
@@ -593,7 +593,7 @@ sub search1 {
 
 
 
-		# ƒvƒƒeƒNƒgƒL[¶¬
+		# ãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã‚­ãƒ¼ç”Ÿæˆ
 		local ( $ptime ) = time + $tim * 60 * 60;
 		local ( $pkey ) = ( $ptime + $protect_a ) * $protect_b + $protect_c;
 		
@@ -603,19 +603,19 @@ sub search1 {
 if ($FORM{'link'} ne '') { $link = $FORM{'link'}; }
 
 	if ($FORM{'link'} ne '_top') { print "<input type=hidden name=\"follow\" value=\"on\">\n"; }
-		print "“ŠeÒ <input type=text name=\"name\" size=20 maxlength=20><br>";		
-		print "ƒ[ƒ‹ <input type=text name=\"email\" size=30><br>\n";
-		print "‘è–¼@ <input type=text name=\"subject\" size=30 value=\"„$name\">  \n";
-		print "<input type=submit value=\"  “Še  \"><input type=reset value=\"Á‚·\"><p>\n";	
+		print "Poster <input type=text name=\"name\" size=20 maxlength=20><br>";		
+		print "E-mail <input type=text name=\"email\" size=30><br>\n";
+		print "Titleã€€ <input type=text name=\"subject\" size=30 value=\"ï¼$name\">  \n";
+		print "<input type=submit value=\"  Post  \"><input type=reset value=\"Reset\"><p>\n";	
 
 
 		print "<input type=hidden name=\"def\" value=\"$defnext\">\n";
 		
-		# ƒvƒƒeƒNƒgƒR[ƒho—Í
+		# ãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã‚³ãƒ¼ãƒ‰å‡ºåŠ›
 		print "<input type=hidden name=\"protect\" value=\"$pkey\">\n";
 		
-		print "“à—e<i>iƒ^ƒO‚Íg‚¦‚Ü‚¹‚ñB\n";
-		print "“à—e‚ğ‘‚©‚¸‚É“Šeƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚ÆƒŠƒ[ƒh‚É‚È‚è‚Ü‚·Bj</i><br>\n";
+		print "Content <i>(HTML tags are not allowed.) \n";
+		print "(If you press the submit button without writing the content, it will reload.ï¼‰</i><br>\n";
 		
 		print "<textarea name=\"value\" rows=5 cols=70>$value\r";
 		
@@ -623,14 +623,14 @@ if ($FORM{'link'} ne '') { $link = $FORM{'link'}; }
 
 
 
-		if ($himage ne '1') { 	print "URL©“®ƒŠƒ“ƒN<input type=checkbox name=\"image\" value=\"1\"></font> \n";}
+		if ($himage ne '1') { 	print "URL auto-linking<input type=checkbox name=\"image\" value=\"1\"></font> \n";}
 else{
-	print "URL©“®ƒŠƒ“ƒN<input type=checkbox name=\"image\" value=\"1\" checked></font> \n";}
+	print "URL auto-linking<input type=checkbox name=\"image\" value=\"1\" checked></font> \n";}
 
-#ƒJƒEƒ“ƒ^[
+#ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	if ( $countlevel > 0 ){
-		print "<font size=-1 color=$bgc>$countdate‚©‚ç ";
-		&counter; print "$countplusi‚±‚í‚ê‚É‚­‚³ƒŒƒxƒ‹$countlevelj</font>\n";	}
+		print "<font size=-1 color=$bgc>$countdateã‹ã‚‰ ";
+		&counter; print "$countplusï¼ˆCrack resistance level$countlevelï¼‰</font>\n";	}
 
 	print "<input type=hidden name=\"win_count\" value=\"$maxcount\">\n";
 
@@ -641,7 +641,7 @@ else{
 		print "<input type=hidden name=\"bgcolor\" value=\"$bgc\"></form><p>\n";	
 }
 
-	else { print "‚İ‚Â‚©‚è‚Ü‚¹‚ñ<br>";}
+	else { print "ã¿ã¤ã‹ã‚Šã¾ã›ã‚“<br>";}
 
 	
 	print "<hr></body></html>\n";
@@ -649,18 +649,18 @@ else{
 }
 
 
-# “ŠeÒ–¼ƒT[ƒ`—pƒTƒuƒ‹[ƒ`ƒ“isearch2j ############################################
+# æŠ•ç¨¿è€…åã‚µãƒ¼ãƒç”¨ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ï¼ˆsearch2ï¼‰ ############################################
 sub search2 {
 
 	print "Content-type: text/html\n\n";
-	print "<html><head><title>$FORM{search}‚Ì“Šeˆê——</title></head>\n";
+	print "<html><head><title>$FORM{search}List of posts by</title></head>\n";
 	print "$body\n";
 
-	# ƒoƒi[‚Í‚±‚±
+	# ãƒãƒŠãƒ¼ã¯ã“ã“
 
-	#--- ‹L˜^‹L–‚Ìo—Í ----------------------------------#
+	#--- è¨˜éŒ²è¨˜äº‹ã®å‡ºåŠ› ----------------------------------#
 
-	# ‹L˜^ƒtƒ@ƒCƒ‹‚ğ“Ç‚İo‚µƒI[ƒvƒ“‚µ‚ÄA”z—ñ<@lines>‚ÉŠi”[‚·‚é
+	# è¨˜éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å‡ºã—ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã€é…åˆ—<@lines>ã«æ ¼ç´ã™ã‚‹
     open(DB,"$file");
 	@lines = <DB>;
 	close(DB);
@@ -668,34 +668,34 @@ sub search2 {
 	$accesses = @lines;
 	$f = 0;
 	foreach ( @lines ){
-		# ƒf[ƒ^‚ğŠe•Ï”‚É‘ã“ü‚·‚é
+		# ãƒ‡ãƒ¼ã‚¿ã‚’å„å¤‰æ•°ã«ä»£å…¥ã™ã‚‹
 		($date,$name,$email,$value,$subject,$hpage,$himage,$code,$postid) = split(/\,/,$_);
 		if ( $name eq $FORM{search} ) {
 			$f = 1;
-			$value =~ s/\0/\,/g; # ƒkƒ‹ƒR[ƒh‚É•ÏŠ·‹L˜^‚µ‚½”¼ŠpƒJƒ“ƒ}‚ğ•œ‹A‚³‚¹‚é
+			$value =~ s/\0/\,/g; # ãƒŒãƒ«ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›è¨˜éŒ²ã—ãŸåŠè§’ã‚«ãƒ³ãƒã‚’å¾©å¸°ã•ã›ã‚‹
 			chop($himage) if $himage =~ /\n/;
 			chop($hpage) if $hpage =~ /\n/;
 			&disp;
 		}
 	}
 
-	if ($f == 0){ print "‚İ‚Â‚©‚è‚Ü‚¹‚ñ<br>";}
+	if ($f == 0){ print "ã¿ã¤ã‹ã‚Šã¾ã›ã‚“<br>";}
 
 	print "<hr></body></html>\n";
 	exit;
 }
 
-# ƒgƒsƒbƒNƒT[ƒ`—pƒTƒuƒ‹[ƒ`ƒ“isearch3j ############################################
+# ãƒˆãƒ”ãƒƒã‚¯ã‚µãƒ¼ãƒç”¨ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ï¼ˆsearch3ï¼‰ ############################################
 sub search3 {
 
 
 	print "Content-type: text/html\n\n";
-	print "<html><head><title>ƒXƒŒƒbƒhˆê——</title></head>\n";
+	print "<html><head><title>ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§</title></head>\n";
 	print "$body\n";
 
-	#--- ‹L˜^‹L–‚Ìo—Í ----------------------------------#
+	#--- è¨˜éŒ²è¨˜äº‹ã®å‡ºåŠ› ----------------------------------#
 
-	# ‹L˜^ƒtƒ@ƒCƒ‹‚ğ“Ç‚İo‚µƒI[ƒvƒ“‚µ‚ÄA”z—ñ<@lines>‚ÉŠi”[‚·‚é
+	# è¨˜éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å‡ºã—ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã€é…åˆ—<@lines>ã«æ ¼ç´ã™ã‚‹
 open(DB,"$file");
 
 	@lines = <DB>;
@@ -704,28 +704,28 @@ open(DB,"$file");
 	$accesses = @lines;
 	$f = 0;
 	foreach ( @lines ){
-		# ƒf[ƒ^‚ğŠe•Ï”‚É‘ã“ü‚·‚é
+		# ãƒ‡ãƒ¼ã‚¿ã‚’å„å¤‰æ•°ã«ä»£å…¥ã™ã‚‹
 		($date,$name,$email,$value,$subject,$hpage,$himage,$code,$postid) = split(/\,/,$_);
 
 		if ( $code eq $FORM{search} ) {
 			$f = 1;
-			$value =~ s/\0/\,/g; # ƒkƒ‹ƒR[ƒh‚É•ÏŠ·‹L˜^‚µ‚½”¼ŠpƒJƒ“ƒ}‚ğ•œ‹A‚³‚¹‚é
+			$value =~ s/\0/\,/g; # ãƒŒãƒ«ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›è¨˜éŒ²ã—ãŸåŠè§’ã‚«ãƒ³ãƒã‚’å¾©å¸°ã•ã›ã‚‹
 			chop($himage) if $himage =~ /\n/;
 			chop($hpage) if $hpage =~ /\n/;
 			&disp;
 		}
 	}
 
-	if ($f == 0){ print "‚İ‚Â‚©‚è‚Ü‚¹‚ñ<br>";}
+	if ($f == 0){ print "ã¿ã¤ã‹ã‚Šã¾ã›ã‚“<br>";}
 
 	print "<hr></body></html>\n";
 	exit;
 }
 
-# ƒƒO“Ç‚İ•\¦ƒTƒuƒ‹[ƒ`ƒ“ #######################################################
+# ãƒ­ã‚°èª­ã¿è¡¨ç¤ºã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ #######################################################
 sub  read {
 	
-	# ƒvƒƒeƒNƒgƒL[¶¬
+	# ãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã‚­ãƒ¼ç”Ÿæˆ
 	local ( $ptime ) = time + $tim * 60 * 60;
 	local ( $pkey ) = ( $ptime + $protect_a ) * $protect_b + $protect_c;
 	
@@ -734,69 +734,69 @@ sub  read {
 	print "$body\n";
 
 	
-	# ƒoƒi[‚Í‚±‚±
+	# ãƒãƒŠãƒ¼ã¯ã“ã“
 	
-	print "<font size=+1><b>$title</b></font>@\n";
-	print "<font size=-1><b><a href=\"http://www.geocities.com/Tokyo/Subway/1282/front.html\" target=\"_top\">‚¨‚µ‚ç‚¹ƒy[ƒW</a></b></font> \n";
-	print " <font size=-1><b><a href=\"http://freehosting1.at.webjump.com/sw/swatty-webjump/\" target=\"_top\">ƒXƒƒeƒB</a></b></font>\n";
-#print "<font size=-1><b><a href=\"mailto:$mailadd\">˜A—æ</a></b></font>\n";
+	print "<font size=+1><b>$title</b></font>ã€€\n";
+	print "<font size=-1><b><a href=\"http://www.geocities.com/Tokyo/Subway/1282/front.html\" target=\"_top\">ãŠã—ã‚‰ã›ãƒšãƒ¼ã‚¸</a></b></font> \n";
+	print " <font size=-1><b><a href=\"http://freehosting1.at.webjump.com/sw/swatty-webjump/\" target=\"_top\">ã‚¹ãƒ¯ãƒ†ã‚£</a></b></font>\n";
+#print "<font size=-1><b><a href=\"mailto:$mailadd\">é€£çµ¡å…ˆ</a></b></font>\n";
 
 	print "<form method=$method action=\"$cgiurl\">\n";
 	
 	print "<input type=hidden name=\"action\" value=\"$action\">\n";
-	print "“ŠeÒ <input type=text name=\"name\" size=20 maxlength=40 value=\"$FORM{'name'}\"><br>";
-	print "ƒ[ƒ‹ <input type=text name=\"email\" size=30><br>\n";
-	print "‘è–¼@ <input type=text name=\"subject\" size=30 maxlength=60>  \n";
-	print "<input type=submit value=\"“Še^ƒŠƒ[ƒh\"><input type=reset value=\"Á‚·\"><p>“à—e<i>iƒ^ƒO‚Íg‚¦‚Ü‚¹‚ñB“à—e‚ğ‘‚©‚¸‚É“Šeƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚ÆƒŠƒ[ƒh‚É‚È‚è‚Ü‚·Bj</i><br><textarea name=\"value\" rows=5 cols=70></textarea><input type=hidden name=\"page\" size=70 value=\"http://\"><p>\n";
-	print "•\\¦Œ”\n";
+	print "æŠ•ç¨¿è€… <input type=text name=\"name\" size=20 maxlength=40 value=\"$FORM{'name'}\"><br>";
+	print "ãƒ¡ãƒ¼ãƒ« <input type=text name=\"email\" size=30><br>\n";
+	print "é¡Œåã€€ <input type=text name=\"subject\" size=30 maxlength=60>  \n";
+	print "<input type=submit value=\"æŠ•ç¨¿ï¼ãƒªãƒ­ãƒ¼ãƒ‰\"><input type=reset value=\"æ¶ˆã™\"><p>å†…å®¹<i>ï¼ˆã‚¿ã‚°ã¯ä½¿ãˆã¾ã›ã‚“ã€‚å†…å®¹ã‚’æ›¸ã‹ãšã«æŠ•ç¨¿ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ãƒªãƒ­ãƒ¼ãƒ‰ã«ãªã‚Šã¾ã™ã€‚ï¼‰</i><br><textarea name=\"value\" rows=5 cols=70></textarea><input type=hidden name=\"page\" size=70 value=\"http://\"><p>\n";
+	print "è¡¨\ç¤ºä»¶æ•°\n";
 	print "<input type=text name=\"def\" size=8 value=\"$defnext\">\n";
-	print "ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[<input type=text name=\"bgcolor\" size=6 value=\"$bgc\"><input type=hidden name=\"link\" value=\"$FORM{'link'}\">\n";
+	print "ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚«ãƒ©ãƒ¼<input type=text name=\"bgcolor\" size=6 value=\"$bgc\"><input type=hidden name=\"link\" value=\"$FORM{'link'}\">\n";
 
 
- #$monthŒ$mday“ú($youbi)$hour$min•ª$sec•b
+ #$monthæœˆ$mdayæ—¥($youbi)$houræ™‚$minåˆ†$secç§’
 
 	print "<input type=hidden name=\"win_time\" value=\"$month$mday$hour$min$sec\">\n";
 
 
-	print "URL©“®ƒŠƒ“ƒN<input type=checkbox name=\"image\" value=\"1\" checked></font> \n";
+	print "URLè‡ªå‹•ãƒªãƒ³ã‚¯<input type=checkbox name=\"image\" value=\"1\" checked></font> \n";
 
 	print "<input type=hidden name=\"code\" value=\"$sec$min\@$pkey.com\">\n";
 
-	print "<p><font size=-1>Å‹ß‚Ì‰ß‹ƒƒO‚Í<a href=\"./getlog.cgi\" target=\"_top\">‚±‚±</a>B\n";
+	print "<p><font size=-1>æœ€è¿‘ã®éå»ãƒ­ã‚°ã¯<a href=\"./getlog.cgi\" target=\"_top\">ã“ã“</a>ã€‚\n";
 
-#ƒJƒEƒ“ƒ^[
+#ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	if ( $countlevel > 0 ){
-		print "<font size=-1>$countdate‚©‚ç ";
-		&counter; print "$countplusi‚±‚í‚ê‚É‚­‚³ƒŒƒxƒ‹$countlevelj</font>\n";	}
+		print "<font size=-1>$countdateã‹ã‚‰ ";
+		&counter; print "$countplusï¼ˆã“ã‚ã‚Œã«ãã•ãƒ¬ãƒ™ãƒ«$countlevelï¼‰</font>\n";	}
 
 	print "<input type=hidden name=\"win_count\" value=\"$maxcount\">\n";
 
-	# ƒvƒƒeƒNƒgƒR[ƒho—Í
+	# ãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã‚³ãƒ¼ãƒ‰å‡ºåŠ›
 	print "<input type=hidden name=\"protect\" value=\"$pkey\">\n";
 	
 	
-#	print "<br><i>V‚µ‚¢‹L–‚©‚ç•\\¦‚µ‚Ü‚·BÅ‚$maxŒ‚Ì‹L–‚ª‹L˜^‚³‚êA‚»‚ê‚ğ’´‚¦‚é‚ÆŒÃ‚¢‹L–‚©‚çíœ‚³‚ê‚Ü‚·B<br>\n";
-#	print "‚P‰ñ‚Ì•\\¦‚Å$defŒ‚ğ‰z‚¦‚éê‡‚ÍA‰º‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚±‚Æ‚ÅŸ‚Ì‰æ–Ê‚Ì‹L–‚ğ•\\¦‚µ‚Ü‚·B</i>\n";
+#	print "<br><i>æ–°ã—ã„è¨˜äº‹ã‹ã‚‰è¡¨\ç¤ºã—ã¾ã™ã€‚æœ€é«˜$maxä»¶ã®è¨˜äº‹ãŒè¨˜éŒ²ã•ã‚Œã€ãã‚Œã‚’è¶…ãˆã‚‹ã¨å¤ã„è¨˜äº‹ã‹ã‚‰å‰Šé™¤ã•ã‚Œã¾ã™ã€‚<br>\n";
+#	print "ï¼‘å›ã®è¡¨\ç¤ºã§$defä»¶ã‚’è¶Šãˆã‚‹å ´åˆã¯ã€ä¸‹ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã“ã¨ã§æ¬¡ã®ç”»é¢ã®è¨˜äº‹ã‚’è¡¨\ç¤ºã—ã¾ã™ã€‚</i>\n";
 
-			print "<hr><a href=\"http://extra.onlineexpress.net/cgi-bin/strangeworld/bbs.cgi\">ƒGƒNƒXƒgƒ‰</a>A<a href=\"http://www.kinsan.ne.jp/~miki/strangeworld/bbs.cgi\">‚«‚ñ‚³‚ñ</a>A <a href=\"http://famille.onlineexpress.net/cgi-bin/strangeworld/bbs.cgi\">‚Ó‚Ÿ‚İ[‚é</a>A<a href=\"http://www.bea.hi-ho.ne.jp/cgi-bin/user/strangeworld/bbs.cgi\">‚Í‚¢‚Ù[</a> | <a href=\"http://www4.famille.ne.jp/~haruna/remix/bbs.cgi\">REMIX</a>A<a href=\"http://kakumeigun.onlineexpress.net/cgi-bin/relax/bbs.cgi\">RELAX</a> | <a href=\"http://edoya.neko.to/2/upload.cgi\">‚ŸŠEˆâY</a>A<a href=\"http://saturdaytears.virtualave.net/cgi-bin/upload.cgi\">œpœj‚·‚éŠ[</a>\n";
+			print "<hr><a href=\"http://extra.onlineexpress.net/cgi-bin/strangeworld/bbs.cgi\">ã‚¨ã‚¯ã‚¹ãƒˆãƒ©</a>ã€<a href=\"http://www.kinsan.ne.jp/~miki/strangeworld/bbs.cgi\">ãã‚“ã•ã‚“</a>ã€ <a href=\"http://famille.onlineexpress.net/cgi-bin/strangeworld/bbs.cgi\">ãµãã¿ãƒ¼ã‚‹</a>ã€<a href=\"http://www.bea.hi-ho.ne.jp/cgi-bin/user/strangeworld/bbs.cgi\">ã¯ã„ã»ãƒ¼</a> | <a href=\"http://www4.famille.ne.jp/~haruna/remix/bbs.cgi\">REMIX</a>ã€<a href=\"http://kakumeigun.onlineexpress.net/cgi-bin/relax/bbs.cgi\">RELAX</a> | <a href=\"http://edoya.neko.to/2/upload.cgi\">ãç•Œéºç”£</a>ã€<a href=\"http://saturdaytears.virtualave.net/cgi-bin/upload.cgi\">å¾˜å¾Šã™ã‚‹éª¸</a>\n";
 
-#	 ƒT[ƒ`‚Ì’ˆÓ‘‚«
-	print "<hr>Å‘å\•\\¦F$maxŒ@¡F•ÔM@šF“ŠeÒŒŸõ@ŸFƒXƒŒƒbƒhŒŸõ@\•\\¦Œ”0ŒF–¢“ÇƒƒbƒZ[ƒW<hr>“Še‚Ìíœ‚Í‚µ‚È‚¢‚Ì‚ÅA‚±‚ÌŒf¦”Â‚ÉŠÖ‚í‚é‚ ‚ç‚ä‚és“®‚Í©•ª‚ÅÓ”C‚ğ‚Æ‚Á‚Ä‚­‚¾‚³‚¢B\n";
+#	 ã‚µãƒ¼ãƒã®æ³¨æ„æ›¸ã
+	print "<hr>æœ€å¤§\è¡¨\ç¤ºï¼š$maxä»¶ã€€â– ï¼šè¿”ä¿¡ã€€â˜…ï¼šæŠ•ç¨¿è€…æ¤œç´¢ã€€â—†ï¼šã‚¹ãƒ¬ãƒƒãƒ‰æ¤œç´¢ã€€\è¡¨\ç¤ºä»¶æ•°0ä»¶ï¼šæœªèª­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸<hr>æŠ•ç¨¿ã®å‰Šé™¤ã¯ã—ãªã„ã®ã§ã€ã“ã®æ²ç¤ºæ¿ã«é–¢ã‚ã‚‹ã‚ã‚‰ã‚†ã‚‹è¡Œå‹•ã¯è‡ªåˆ†ã§è²¬ä»»ã‚’ã¨ã£ã¦ãã ã•ã„ã€‚\n";
 
-#	ƒŠƒ[ƒh
-	print "<p></font></font><input type=submit value=\"“Še^ƒŠƒ[ƒh\">\n";
+#	ãƒªãƒ­ãƒ¼ãƒ‰
+	print "<p></font></font><input type=submit value=\"æŠ•ç¨¿ï¼ãƒªãƒ­ãƒ¼ãƒ‰\">\n";
 
 
 	print "</form>\n";
 
 
 	
-	#--- ‹L˜^‹L–‚Ìo—Í ----------------------------------#
+	#--- è¨˜éŒ²è¨˜äº‹ã®å‡ºåŠ› ----------------------------------#
 	
-# $date=#$monthŒ$mday“ú($youbi)$hour$min•ª$sec•b
+# $date=#$monthæœˆ$mdayæ—¥($youbi)$houræ™‚$minåˆ†$secç§’
 #
 
-	# ‹L˜^ƒtƒ@ƒCƒ‹‚ğ“Ç‚İo‚µƒI[ƒvƒ“‚µ‚ÄA”z—ñ<@lines>‚ÉŠi”[‚·‚é
+	# è¨˜éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å‡ºã—ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã€é…åˆ—<@lines>ã«æ ¼ç´ã™ã‚‹
 open(DB,"$file");
 	@lines = <DB>;
 	close(DB);
@@ -806,16 +806,16 @@ open(DB,"$file");
 	$accesses = @lines;
 	$f = 0;
 	foreach ( @lines ){
-		# ƒf[ƒ^‚ğŠe•Ï”‚É‘ã“ü‚·‚é
+		# ãƒ‡ãƒ¼ã‚¿ã‚’å„å¤‰æ•°ã«ä»£å…¥ã™ã‚‹
 		($date,$name,$email,$value,$subject,$hpage,$himage,$code,$postid) = split(/\,/,$_);
 
 $date_s = $date;
-$date=~ s/Œ|“ú|\(|\)||•ª|•b|‰Î|…|–Ø|‹à|“y//g;
+$date=~ s/æœˆ|æ—¥|\(|\)|æ™‚|åˆ†|ç§’|ç«|æ°´|æœ¨|é‡‘|åœŸ//g;
 #$date=~ s/0//o;
 
 		if ( $FORM{'win_time'} <= $date ) {
 			$f = $f + 1;
-			$value =~ s/\0/\,/g; # ƒkƒ‹ƒR[ƒh‚É•ÏŠ·‹L˜^‚µ‚½”¼ŠpƒJƒ“ƒ}‚ğ•œ‹A‚³‚¹‚é
+			$value =~ s/\0/\,/g; # ãƒŒãƒ«ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›è¨˜éŒ²ã—ãŸåŠè§’ã‚«ãƒ³ãƒã‚’å¾©å¸°ã•ã›ã‚‹
 			chop($himage) if $himage =~ /\n/;
 			chop($hpage) if $hpage =~ /\n/;
 
@@ -828,16 +828,16 @@ else { last; }
 
 $g = $f;
 
-		if ( $f eq 0 ) {print "<hr><p><font size=-1><i>–¢“ÇƒƒbƒZ[ƒW‚Í‚ ‚è‚Ü‚¹‚ñB</i></font><p>";}
+		if ( $f eq 0 ) {print "<hr><p><font size=-1><i>æœªèª­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚</i></font><p>";}
 
-else {print "<hr><p><font size=-1><i>$gŒ‚ÌƒƒbƒZ[ƒW‚ª‚ ‚è‚Ü‚·B</i></font><p>";}
+else {print "<hr><p><font size=-1><i>$gä»¶ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚Šã¾ã™ã€‚</i></font><p>";}
 
 
 	
-	# ‚±‚ÌƒXƒNƒŠƒvƒg‚Ì’˜ìŒ •\¦i‚©‚È‚ç‚¸•\¦‚µ‚Ä‚­‚¾‚³‚¢j
+	# ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®è‘—ä½œæ¨©è¡¨ç¤ºï¼ˆã‹ãªã‚‰ãšè¡¨ç¤ºã—ã¦ãã ã•ã„ï¼‰
 
-		print "<form method=$method action=\"$cgiurl\"><input type=hidden name=\"def\" value=\"$def\"><input type=hidden name=\"bgcolor\" value=\"$bgc\"><input type=hidden name=\"win_time\" value=\"$month$mday$hour$min$sec\"><input type=submit value=\"@ƒŠƒ[ƒh@\"></form>\n";
-	print "<h4 align=right><hr size=5><a href=\"http://www.ask.or.jp/~rescue/\">MiniBBS v7.5</a> <a href=\"http://www.bea.hi-ho.ne.jp/strangeworld/recycle/\">REQUIEM 990707ƒÁ</a> is Free.</h4>\n";
+		print "<form method=$method action=\"$cgiurl\"><input type=hidden name=\"def\" value=\"$def\"><input type=hidden name=\"bgcolor\" value=\"$bgc\"><input type=hidden name=\"win_time\" value=\"$month$mday$hour$min$sec\"><input type=submit value=\"ã€€ãƒªãƒ­ãƒ¼ãƒ‰ã€€\"></form>\n";
+	print "<h4 align=right><hr size=5><a href=\"http://www.ask.or.jp/~rescue/\">MiniBBS v7.5</a> <a href=\"http://www.bea.hi-ho.ne.jp/strangeworld/recycle/\">REQUIEM 990707Î³</a> is Free.</h4>\n";
 	print "</body></html>\n";
 	exit;
 
@@ -847,23 +847,23 @@ else {print "<hr><p><font size=-1><i>$gŒ‚ÌƒƒbƒZ[ƒW‚ª‚ ‚è‚Ü‚·B</i></font><p>"
 }
 
 
-# Še“Še•\¦—pƒTƒuƒ‹[ƒ`ƒ“ #############################################################
+# å„æŠ•ç¨¿è¡¨ç¤ºç”¨ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ #############################################################
 sub disp {
 
 	$hpage0 =$hpage;
-	$hpage0 =~ s/$cgiurl\?action=search1\&search=(.*)\&id=\d*/QlF$1/;
+	$hpage0 =~ s/$cgiurl\?action=search1\&search=(.*)\&id=\d*/å‚è€ƒï¼š$1/;
 	print "<hr>";
-	print "<font size=+1 color=\"#$subjc\"><b>$subject</b></font>@";
+	print "<font size=+1 color=\"#$subjc\"><b>$subject</b></font>ã€€";
 	
 
-	if ($email ne '') { print "“ŠeÒF<b><a href=\"mailto:$email\">$name</a></b>\n"; }
-	else { print "“ŠeÒF<b>$name</b></font>\n"; }
+	if ($email ne '') { print "æŠ•ç¨¿è€…ï¼š<b><a href=\"mailto:$email\">$name</a></b>\n"; }
+	else { print "æŠ•ç¨¿è€…ï¼š<b>$name</b></font>\n"; }
 
-		print "<font size=-1>@“Še“úF$date";
+		print "<font size=-1>ã€€æŠ•ç¨¿æ—¥ï¼š$date";
 
-	print "@<a href=\"$cgiurl\?bgcolor\=$bgc\&action\=search1\&search\=$date\&id=$postid\" target=\"link\">¡</a>";
-	print "@<a href=\"$cgiurl\?bgcolor\=$bgc\&action\=search2\&search\=$name\" target=\"link\">š</a>";
-	if ($hpage ne'' ) { print "@<a href=\"$cgiurl\?bgcolor\=$bgc\&action\=search3\&search\=$code\" target=\"link\">Ÿ</a>\n"; }
+	print "ã€€<a href=\"$cgiurl\?bgcolor\=$bgc\&action\=search1\&search\=$date\&id=$postid\" target=\"link\">â– </a>";
+	print "ã€€<a href=\"$cgiurl\?bgcolor\=$bgc\&action\=search2\&search\=$name\" target=\"link\">â˜…</a>";
+	if ($hpage ne'' ) { print "ã€€<a href=\"$cgiurl\?bgcolor\=$bgc\&action\=search3\&search\=$code\" target=\"link\">â—†</a>\n"; }
 	print "</font><p>\n";
 
 if (($FORM{search}  eq '') && ($himage eq '1') ){
@@ -879,23 +879,23 @@ $value =~ s!((https?|ftp|gopher|telnet|whois|news):(=\S+|[\x21-\x7f])+)!<a href=
 	print "</blockquote>\n";
 }
 
-# ƒGƒ‰[ˆ—ƒTƒuƒ‹[ƒ`ƒ“ ############################################################
+# ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ ############################################################
 sub error {
 	
-	#  &error(xx); ‚ÅŒÄ‚Ño‚³‚ê‚½ƒ‹[ƒ`ƒ“‚ÍA()“à‚Ì”š‚ª $error ‚É‘ã“ü‚³‚ê‚éB
+	#  &error(xx); ã§å‘¼ã³å‡ºã•ã‚ŒãŸãƒ«ãƒ¼ãƒãƒ³ã¯ã€()å†…ã®æ•°å­—ãŒ $error ã«ä»£å…¥ã•ã‚Œã‚‹ã€‚
 	
 	$error = $_[0];
 	
-	if    ($error eq "0") { $error_msg = '‹L˜^ƒtƒ@ƒCƒ‹‚Ì“üo—Í‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B'; }
-	elsif ($error eq "2") {	$error_msg = '“à—e‚ª‘‚©‚ê‚Ä‚¢‚Ü‚¹‚ñB‚Ü‚½‚Í‹L˜^‹Ö~‚Ìƒ^ƒO‚ª‘‚©‚ê‚Ä‚¢‚Ü‚·B'; }
-	elsif ($error eq "3") {	$error_msg = 'ƒ[ƒ‹ƒAƒhƒŒƒX‚ª³‚µ‚­“ü—Í‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB'; }
-	elsif ($error eq "4") {	$error_msg = 'ƒ[ƒ‹ƒAƒhƒŒƒX‚Í•¡”w’è‚Å‚«‚Ü‚¹‚ñB'; }
-	elsif ($error eq "5") {	$error_msg = '“Še“à—e‚ª‘å‚«‚·‚¬‚Ü‚·B'; }
+	if    ($error eq "0") { $error_msg = 'è¨˜éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã®å…¥å‡ºåŠ›ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚'; }
+	elsif ($error eq "2") {	$error_msg = 'å†…å®¹ãŒæ›¸ã‹ã‚Œã¦ã„ã¾ã›ã‚“ã€‚ã¾ãŸã¯è¨˜éŒ²ç¦æ­¢ã®ã‚¿ã‚°ãŒæ›¸ã‹ã‚Œã¦ã„ã¾ã™ã€‚'; }
+	elsif ($error eq "3") {	$error_msg = 'ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ­£ã—ãå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚'; }
+	elsif ($error eq "4") {	$error_msg = 'ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã¯è¤‡æ•°æŒ‡å®šã§ãã¾ã›ã‚“ã€‚'; }
+	elsif ($error eq "5") {	$error_msg = 'æŠ•ç¨¿å†…å®¹ãŒå¤§ãã™ãã¾ã™ã€‚'; }
 
-	elsif ($error eq "6") {	$error_msg = 'ƒAƒNƒZƒX‚ª¬‚İ‡‚Á‚Ä‚é‚½‚ßA‘‚«‚İ‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B‚à‚¤ˆê“xA“Šeƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B'; }
-	elsif ($error eq "form") { $error_msg = "“Še‰æ–Ê‚Ì‚t‚q‚k‚ª<br>$cgiurl<br>" . 'ˆÈŠO‚©‚ç‚Ì“Še‚Í‚Å‚«‚Ü‚¹‚ñB'; }
-	elsif ($error eq "x") {	$error_msg = "ˆÈ‰º‚Ìî•ñ‚ª‹L˜^‚³‚ê‚Ü‚µ‚½B‚¯‚¯"; }
-	elsif ($error eq "xx") { $error_msg = "‚©‚í‚¢‚»‚¤"; }
+	elsif ($error eq "6") {	$error_msg = 'ã‚¢ã‚¯ã‚»ã‚¹ãŒæ··ã¿åˆã£ã¦ã‚‹ãŸã‚ã€æ›¸ãè¾¼ã¿ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ã‚‚ã†ä¸€åº¦ã€æŠ•ç¨¿ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚'; }
+	elsif ($error eq "form") { $error_msg = "æŠ•ç¨¿ç”»é¢ã®ï¼µï¼²ï¼¬ãŒ<br>$cgiurl<br>" . 'ä»¥å¤–ã‹ã‚‰ã®æŠ•ç¨¿ã¯ã§ãã¾ã›ã‚“ã€‚'; }
+	elsif ($error eq "x") {	$error_msg = "ä»¥ä¸‹ã®æƒ…å ±ãŒè¨˜éŒ²ã•ã‚Œã¾ã—ãŸã€‚ã‘ã‘"; }
+	elsif ($error eq "xx") { $error_msg = "ã‹ã‚ã„ãã†"; }
 	elsif ($error eq 'xxx') { $error_msg = ' '; }
 	
 	print "Content-type: text/html\n\n";
@@ -919,7 +919,7 @@ sub error {
 	exit;
 }
 
-# ƒJƒEƒ“ƒ^[ˆ—ƒTƒuƒ‹[ƒ`ƒ“ #########################################################
+# ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å‡¦ç†ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ #########################################################
 sub counter {
 
 	for( $i=0 ; $i < $countlevel ; $i++){
